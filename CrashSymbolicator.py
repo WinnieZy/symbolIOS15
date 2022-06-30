@@ -227,6 +227,9 @@ def should_symbolicate_frame(frame, images, args):
 		return False
 
 	image = images[imageIndex]
+	// fix:AttributeError: 'Namespace' object has no attribute 'path'
+	if not hasattr(image, 'path'):
+		return False
 	imagePath = image.path
 	if not imagePath:
 		# No image path, don't attempt to symbolicate.
